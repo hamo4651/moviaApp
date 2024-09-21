@@ -1,0 +1,38 @@
+<div class="container mt-5 ">
+  <h2>Recommendations</h2>
+  <div class="carousel mt-5 ">
+    @for(item of movieRecommendations;track id){
+    <div class="card border-0 position-relative " style="height:400px;">
+      <a (click)="goToDetails(item.id)">
+
+      <img class="img-top rounded-3" width="150"  [src]="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
+        alt="recommendation Poster">
+
+      </a>
+      <div
+        class="position-absolute bg-dark border-info border border-2 text-light d-flex align-items-center justify-content-center"
+        style="
+            top: 50%;
+            left: 6%;
+            border-radius: 50%;
+            width: 2.9rem;
+            height: 2.9rem;
+          ">
+        <span class="roboto-light" style="font-size: 14px">{{
+          item.vote_average | number : "1.0-2"
+          }}</span>
+      </div>
+      <div class="card-body pb-0 mt-3 ">
+        <p class="mb-0 roboto-bold">{{ item.title }}</p>
+        <div class="d-flex  align-items-center">
+          <span class="card-text text-muted me-4">
+            {{ item.release_date | date : "MMM d, y" }}
+          </span>
+          <input aria-label="Checkbox for following text input" type="checkbox" class="addToFav" name=""
+            id="heart{{ item.id }}" />
+          <label for="heart{{ item.id }}" class=""><fa-icon (click)="addToCart(item)" [icon]="faHeart" class="fs-4 heart"></fa-icon></label>
+        </div></div>
+      </div>
+    }
+
+  </div>
